@@ -1,0 +1,358 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+.resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   HEADER SECTION - FLEXBOX LAYOUT
+   =========================== */
+
+.resume-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8d 100%);
+    color: white;
+    padding: 40px 50px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.name {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    flex: 1;
+}
+
+.profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    order: -1; /* This puts the image before the text */
+}
+
+.profile-picture-placeholder {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid white;
+    background-color: #4a90e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    order: -1;
+}
+
+.contact-info {
+    font-size: 0.95em;
+    line-height: 1.8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease;
+}
+
+.contact-info a:hover {
+    border-bottom-color: white;
+}
+
+
+.resume-content {
+    padding: 40px 50px;
+}
+
+.section {
+    margin-bottom: 35px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.5em;
+    color: #1e3a5f;
+    font-weight: 700;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #4a90e2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.education-item {
+    margin-bottom: 25px;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+}
+
+.institution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.institution-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2c5f8d;
+}
+
+.location {
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+}
+
+.degree-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3px;
+}
+
+.degree {
+    font-weight: 600;
+    color: #333;
+}
+
+.year {
+    font-size: 0.9em;
+    color: #666;
+    font-weight: 600;
+}
+
+.major-minor {
+    font-size: 0.95em;
+    color: #555;
+    margin-left: 15px;
+}
+
+
+.activity-item {
+    margin-bottom: 30px;
+}
+
+.activity-item:last-child {
+    margin-bottom: 0;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.organization-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2c5f8d;
+}
+
+.dates {
+    font-size: 0.9em;
+    color: #666;
+    font-weight: 600;
+}
+
+.position {
+    font-weight: 600;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.responsibilities {
+    list-style: none;
+    margin-left: 0;
+}
+
+.responsibilities li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.responsibilities li:before {
+    content: "●";
+    color: #4a90e2;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+
+.skills-category {
+    margin-bottom: 15px;
+}
+
+.skills-category:last-child {
+    margin-bottom: 0;
+}
+
+.skill-label {
+    font-weight: 700;
+    color: #2c5f8d;
+    display: inline;
+}
+
+.skill-content {
+    display: inline;
+    color: #444;
+}
+
+.skill-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.skill-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.skill-list li:before {
+    content: "●";
+    color: #4a90e2;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .resume-header {
+        padding: 30px 30px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .name {
+        font-size: 2em;
+        order: 0;
+    }
+
+    .profile-picture,
+    .profile-picture-placeholder {
+        order: -1;
+    }
+
+    .contact-info {
+        justify-content: center;
+    }
+
+    .resume-content {
+        padding: 30px 30px;
+    }
+
+    .institution-header,
+    .degree-info,
+    .activity-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .location,
+    .year,
+    .dates {
+        margin-top: 3px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .name {
+        font-size: 1.6em;
+    }
+
+    .profile-picture,
+    .profile-picture-placeholder {
+        width: 120px;
+        height: 120px;
+    }
+
+    .resume-content {
+        padding: 25px 20px;
+    }
+
+    .section-title {
+        font-size: 1.3em;
+    }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+
+    .resume-container {
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    .resume-header {
+        background: #1e3a5f;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .section-title {
+        border-bottom-color: #4a90e2;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
