@@ -1,5 +1,3 @@
-// app.js — Erin Quiazon Portfolio
-
 function handleFormSubmit(event) {
     event.preventDefault();
 
