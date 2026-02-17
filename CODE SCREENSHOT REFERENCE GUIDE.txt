@@ -1,0 +1,464 @@
+CODE SCREENSHOT REFERENCE GUIDE - UPDATED WITH ACTUAL CODE
+Lab Activity 4 Report - Erin Quiazon
+=======================================================================
+
+This guide shows the EXACT code from your actual project files.
+Use this to screenshot the correct sections for each placeholder.
+
+=======================================================================
+PART I - PROCEDURES #1 (Resume/CV - resume.css)
+=======================================================================
+
+Placeholder 1: "HTML head section with link to external CSS"
+------------------------------------------------------------
+File: resume.html (lines 1-8)
+Screenshot this:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erin Quiazon - Resume</title>
+    <link rel="stylesheet" href="css/resume.css">
+</head>
+
+
+Placeholder 2: "CSS flexbox layout for header"
+------------------------------------------------------------
+File: css/resume.css (lines 27-56)
+Screenshot this:
+
+.resume-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8d 100%);
+    color: white;
+    padding: 40px 50px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.name {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    flex: 1;
+}
+
+.profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    order: -1; /* This puts the image before the text */
+}
+
+
+Placeholder 3: "CSS universal reset and body styles"
+------------------------------------------------------------
+File: css/resume.css (lines 1-14)
+Screenshot this:
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+
+Placeholder 4: "CSS gradient header styling"
+------------------------------------------------------------
+File: css/resume.css (lines 16-31)
+Screenshot this:
+
+.resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   HEADER SECTION - FLEXBOX LAYOUT
+   =========================== */
+
+.resume-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8d 100%);
+    color: white;
+    padding: 40px 50px;
+}
+
+
+Placeholder 5: "CSS custom bullet points with ::before"
+------------------------------------------------------------
+File: css/resume.css (lines 206-224)
+Screenshot this:
+
+.responsibilities {
+    list-style: none;
+    margin-left: 0;
+}
+
+.responsibilities li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.responsibilities li:before {
+    content: "●";
+    color: #4a90e2;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+
+Placeholder 6: "CSS @media queries for responsive design"
+------------------------------------------------------------
+File: css/resume.css (lines 266-358)
+Screenshot ALL THREE media queries together:
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .resume-header {
+        padding: 30px 30px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .name {
+        font-size: 2em;
+        order: 0;
+    }
+
+    .profile-picture,
+    .profile-picture-placeholder {
+        order: -1;
+    }
+
+    .contact-info {
+        justify-content: center;
+    }
+
+    .resume-content {
+        padding: 30px 30px;
+    }
+
+    .institution-header,
+    .degree-info,
+    .activity-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .location,
+    .year,
+    .dates {
+        margin-top: 3px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .name {
+        font-size: 1.6em;
+    }
+
+    .profile-picture,
+    .profile-picture-placeholder {
+        width: 120px;
+        height: 120px;
+    }
+
+    .resume-content {
+        padding: 25px 20px;
+    }
+
+    .section-title {
+        font-size: 1.3em;
+    }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+
+    .resume-container {
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    .resume-header {
+        background: #1e3a5f;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .section-title {
+        border-bottom-color: #4a90e2;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+
+=======================================================================
+PART II - PROCEDURES #2 (Portfolio Website - main.css & HTML files)
+=======================================================================
+
+Placeholder 7: "HTML5 Boilerplate folder structure"
+------------------------------------------------------------
+Screenshot your VS Code file explorer showing:
+
+my-website-portfolio/
+├── css/
+│   ├── normalize.css
+│   ├── main.css
+│   └── resume.css
+├── js/
+│   ├── app.js
+│   └── vendor/
+├── img/
+│   ├── picofme.jpg
+│   ├── resumepic.jpg
+│   └── [other images]
+├── index.html
+├── about.html
+├── works.html
+├── experience.html
+├── education.html
+├── references.html
+└── resume.html
+
+
+Placeholder 8: "HTML navigation structure"
+------------------------------------------------------------
+File: Any HTML file (they all have the same header)
+For example from index.html, screenshot the navigation part:
+
+<header class="main-header">
+    <div class="header-brand">
+        <img src="img/picofme.jpg" alt="Logo" class="header-logo">
+        <div class="header-text">
+            <h1>Erin Quiazon</h1>
+            <p>Computer Engineering Student</p>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="works.html">Works</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="references.html">References</a></li>
+            <li><a href="resume.html">Resume</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+Placeholder 9: "CSS custom properties in :root"
+------------------------------------------------------------
+File: css/main.css (lines 3-22)
+Screenshot this:
+
+/* --- CSS Custom Properties (Variables) --- */
+:root {
+    --primary-color: #667eea;
+    --primary-dark: #5568d3;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+    --text-dark: #2d3748;
+    --text-medium: #4a5568;
+    --text-light: #718096;
+    --bg-light: #f7fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+
+Placeholder 10: "CSS sticky header with gradient"
+------------------------------------------------------------
+File: css/main.css (lines 57-85)
+Screenshot this:
+
+/* --- Component: Header --- */
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+}
+
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+
+Placeholder 11: "CSS Grid hero section layout"
+------------------------------------------------------------
+File: css/main.css (lines 248-299)
+Screenshot this:
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+/* ... other hero styles ... */
+
+.highlight-text {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-top: 10px;
+}
+
+
+Placeholder 12: "CSS @media queries for multiple breakpoints"
+------------------------------------------------------------
+File: css/main.css (lines 935-1058)
+Screenshot the responsive section (you can show a representative sample):
+
+/* --- Responsive Design: Tablets --- */
+@media (max-width: 1200px) {
+    .main-header {
+        padding: 20px 40px;
+    }
+
+    .hero-section {
+        padding: 50px 40px;
+    }
+
+    .hero-content {
+        gap: 60px;
+    }
+
+    .hero-title {
+        font-size: 3.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 20px 30px;
+        gap: 20px;
+    }
+
+    .main-nav {
+        width: 100%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        padding: 15px 20px;
+    }
+
+    .hero-section {
+        padding: 40px 25px;
+        min-height: auto;
+    }
+
+    .hero-title {
+        font-size: 2.5em;
+    }
+}
+
+
+=======================================================================
+TIPS FOR TAKING SCREENSHOTS:
+=======================================================================
+
+1. Use VS Code with syntax highlighting enabled
+2. Zoom in (Ctrl +) for better readability if needed
+3. Make sure the code is well-formatted (use Shift+Alt+F)
+4. Capture full sections without cutting off important parts
+5. Use a clean theme (Dark+ or Light+ recommended)
+6. Include line numbers if possible for reference
+
+=======================================================================
