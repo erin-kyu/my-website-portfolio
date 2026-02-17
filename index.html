@@ -63,21 +63,34 @@
 
             <!-- Quick Stats Section -->
             <section class="stats-section">
-                <div class="stat-card">
+                <div class="stat-card fade-in">
                     <div class="stat-number">3rd</div>
                     <div class="stat-label">Year Student</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card fade-in">
                     <div class="stat-number">5+</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">2+</div>
-                    <div class="stat-label">Leadership Roles</div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">Dean's</div>
+                    <div class="stat-label">List Recipient</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card fade-in">
                     <div class="stat-number">10+</div>
                     <div class="stat-label">Technical Skills</div>
+                </div>
+            </section>
+
+            <!-- Clock Section (Exercise 2) -->
+            <section class="clock-section">
+                <div class="clock-inner">
+                    <p class="clock-label">Local Time</p>
+                    <div class="clock-display">
+                        <span id="clock-time">00:00:00</span>
+                        <span id="clock-ampm">AM</span>
+                    </div>
+                    <div id="clock-date"></div>
+                    <div id="clock-greeting"></div>
                 </div>
             </section>
 
@@ -85,32 +98,125 @@
             <section class="featured-section">
                 <h2 class="section-title">What I Do</h2>
                 <div class="featured-grid">
-                    <div class="featured-card">
+                    <div class="featured-card fade-in">
                         <h3>Software Development</h3>
                         <p>Building applications using modern programming languages and frameworks, focusing on clean code and best practices.</p>
                     </div>
-                    <div class="featured-card">
+                    <div class="featured-card fade-in">
                         <h3>Hardware Engineering</h3>
                         <p>Designing and implementing embedded systems, circuit boards, and IoT solutions for smart applications.</p>
                     </div>
-                    <div class="featured-card">
+                    <div class="featured-card fade-in">
                         <h3>Data Analytics</h3>
                         <p>Analyzing complex datasets and applying machine learning algorithms to extract meaningful insights.</p>
                     </div>
-                    <div class="featured-card">
+                    <div class="featured-card fade-in">
                         <h3>Financial Technology</h3>
                         <p>Bridging engineering and finance through risk analytics, financial modeling, and fintech applications.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- CTA Section -->
+            <!-- Contact Form Section -->
             <section class="cta-section">
                 <h2>Let's Work Together</h2>
                 <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                <a href="mailto:erin_quiazon@dlsu.edu.ph" class="btn-cta">Get In Touch</a>
+
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="input-name">Name</label>
+                            <input type="text" id="input-name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-email">Email</label>
+                            <input type="email" id="input-email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-subject">Subject</label>
+                        <input type="text" id="input-subject" name="subject" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-message">Message</label>
+                        <textarea id="input-message" name="message" rows="4" placeholder="Tell me more..." required></textarea>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn-cta">Send Message</button>
+                        <span id="form-status"></span>
+                    </div>
+                </form>
             </section>
         </main>
     </div>
+    <!-- Greeting Dialog (Exercise 2) -->
+    <div id="greeting-overlay">
+        <div id="greeting-dialog">
+            <span id="greeting-emoji"></span>
+            <div id="greeting-title"></div>
+            <div id="greeting-sub"></div>
+            <button id="greeting-btn" onclick="closeGreeting()">Continue</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in, .section-title').forEach(el => observer.observe(el));
+
+        const greetings = [
+            { range: [5,  11], title: "Good Morning!",  sub: "Hope your day is off to a great start.",     emoji: "☀️",  icon: "Morning" },
+            { range: [12, 16], title: "Good Afternoon!", sub: "Hope you're having a productive day.",       emoji: "🌤️", icon: "Afternoon" },
+            { range: [17, 20], title: "Good Evening!",  sub: "The day is winding down — take it easy.",    emoji: "🌇", icon: "Evening" },
+            { range: [21, 23], title: "Good Night!",    sub: "Don't stay up too late — rest up!",          emoji: "🌙", icon: "Night" },
+            { range: [0,  4],  title: "Still Awake?",   sub: "It's late! Get some rest when you can.",     emoji: "🦉",  icon: "Late" }
+        ];
+
+        function getGreeting() {
+            const hour = new Date().getHours();
+            return greetings.find(g => hour >= g.range[0] && hour <= g.range[1]);
+        }
+
+        window.addEventListener('load', function() {
+            const g = getGreeting();
+            document.getElementById('greeting-emoji').textContent = g.emoji;
+            document.getElementById('greeting-title').textContent = g.title;
+            document.getElementById('greeting-sub').textContent   = g.sub;
+            document.getElementById('clock-greeting').textContent = g.title;
+        });
+
+        function closeGreeting() {
+            document.getElementById('greeting-overlay').style.display = 'none';
+        }
+
+        function updateClock() {
+            const now  = new Date();
+            let   h    = now.getHours();
+            const m    = String(now.getMinutes()).padStart(2, '0');
+            const s    = String(now.getSeconds()).padStart(2, '0');
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+
+            document.getElementById('clock-time').textContent = `${String(h).padStart(2,'0')}:${m}:${s}`;
+            document.getElementById('clock-ampm').textContent = ampm;
+
+            const days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            document.getElementById('clock-date').textContent =
+                `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
 </body>
 </html>
