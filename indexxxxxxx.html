@@ -6,8 +6,8 @@
     <title>Erin Quiazon | Portfolio</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/contact.css">
     <link rel="icon" href="icon.png">
+    <li><a href="contact.html">Contact</a></li>
 </head>
 <body>
     <div class="app-container">
@@ -46,7 +46,7 @@
                             <a href="resume.html" class="btn-secondary">View Resume</a>
                         </div>
                         <div class="hero-social">
-                            <a href="/cdn-cgi/l/email-protection#4f2a3d2621103e3a262e3520210f2b233c3a612a2b3a613f27" class="social-link" title="Email">
+                            <a href="mailto:erin_quiazon@dlsu.edu.ph" class="social-link" title="Email">
                                 <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                             <a href="https://github.com" class="social-link" title="GitHub" target="_blank">
@@ -118,64 +118,35 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
+            <!-- Contact Form Section -->
             <section class="cta-section">
-                <div class="hero">
-                    <span class="hero-eyebrow">Contact</span>
-                    <h2>Let's Work Together</h2>
-                    
-                    <button class="btn-open" id="toggleBtn" aria-expanded="false" aria-controls="formPanel">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                             stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="12" y1="5" x2="12" y2="19"/>
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                        Send a Message
-                    </button>
-                </div>
+                <h2>Let's Work Together</h2>
+                <p>Whether it's a project, an opportunity, or just a question — feel free to reach out. I'm open to it.</p>
 
-                <div class="form-panel" id="formPanel" aria-hidden="true">
-                    <div class="form-inner">
-                        <form
-                            action="https://formsubmit.co/erin_quiazon@dlsu.edu.ph"
-                            method="POST"
-                            id="contactForm"
-                            novalidate
-                        >
-                            <input type="hidden" name="_subject" value="New Message from Portfolio — Erin Quiazon" />
-                            <input type="hidden" name="_captcha" value="false" />
-                            <input type="hidden" name="_template" value="table" />
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
-                                    <span class="field-error" id="nameErr">Please enter your name (at least 2 characters).</span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
-                                    <span class="field-error" id="emailErr">Please enter a valid email address.</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" placeholder="What's this about?" />
-                                <span class="field-error" id="subjectErr">Please add a subject (at least 3 characters).</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" placeholder="Tell me more..."></textarea>
-                                <span class="field-error" id="messageErr">Please write a message (at least 10 characters).</span>
-                            </div>
-
-                            <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
-                            <div class="status-msg" id="statusMsg"></div>
-                        </form>
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="input-name">Name</label>
+                            <input type="text" id="input-name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-email">Email</label>
+                            <input type="email" id="input-email" name="email" placeholder="your@email.com" required>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="input-subject">Subject</label>
+                        <input type="text" id="input-subject" name="subject" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-message">Message</label>
+                        <textarea id="input-message" name="message" rows="4" placeholder="Tell me more..." required></textarea>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn-cta">Send Message</button>
+                        <span id="form-status"></span>
+                    </div>
+                </form>
             </section>
         </main>
     </div>
@@ -189,8 +160,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/app.js"></script>
-    <script src="js/contact.js"></script>
+    <script src="js/app.js"></script>
     <script>
         // ── Exercise 3: Scroll Fade-In Animation ────────────────
         // Uses IntersectionObserver to trigger .visible when elements enter viewport
@@ -249,7 +219,7 @@
             const days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
             const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
             document.getElementById('clock-date').textContent =
-                    `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+                `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
         }
 
         updateClock();
