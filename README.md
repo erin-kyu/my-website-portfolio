@@ -104,15 +104,15 @@ Edit `resume.html` line 12:
 ## 🎨 Design Features
 
 ### Portfolio (Main Site)
-- Clean, modern layout
-- Purple/gradient color scheme
+- Warm, editorial layout
+- Cream and rust color scheme
 - Responsive design
 - Frame-based navigation
 - Profile picture on home page
 
 ### Resume
-- Professional blue color scheme (#1e3a5f, #2c5f8d, #4a90e2)
 - Minimal, clean design
+- Consistent with portfolio color scheme
 - Print-friendly
 - Mobile responsive
 - Profile picture header
