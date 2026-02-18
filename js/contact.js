@@ -1,3 +1,14 @@
+/* ════════════════════════════════════════
+   contact.js – Contact Form Logic
+   Portfolio of Erin Quiazon
+════════════════════════════════════════ */
+
+// Guard: only run if the contact form exists on this page
+if (document.getElementById("toggleBtn")) {
+
+/* ════════════════════════════════════════
+   1. TOGGLE ANIMATION
+════════════════════════════════════════ */
 const toggleBtn = document.getElementById("toggleBtn");
 const formPanel = document.getElementById("formPanel");
 
@@ -9,42 +20,37 @@ toggleBtn.addEventListener("click", () => {
 });
 
 
-/* RATE LIMITING
-   Max 3 submissions per 60 seconds. */
-let submitTimes = []; 
+/* ════════════════════════════════════════
+   2. SPAM FILTER: RATE LIMITING
+   Max 3 submissions per 60 seconds.
+════════════════════════════════════════ */
+let submitTimes = [];
 
 function isRateLimited() {
   const now = Date.now();
   submitTimes = submitTimes.filter(time => now - time < 60000);
-  if (submitTimes.length >= 3) {
-    return true;
-  }
+  if (submitTimes.length >= 3) return true;
   submitTimes.push(now);
   return false;
 }
 
 
-/*  TIME-BASED FILTERING */
+/* ════════════════════════════════════════
+   3. SPAM FILTER: TIME-BASED FILTERING
+════════════════════════════════════════ */
 const formLoadTime = Date.now();
 
 function isTooFast() {
-  const secondsTaken = (Date.now() - formLoadTime) / 1000;
-  return secondsTaken < 2;
+  return (Date.now() - formLoadTime) / 1000 < 2;
 }
 
 
-/* SPAM KEYWORD DETECTION*/
+/* ════════════════════════════════════════
+   4. SPAM FILTER: SPAM KEYWORD DETECTION
+════════════════════════════════════════ */
 const spamWords = [
-  "free money",
-  "buy now",
-  "click here",
-  "subscribe",
-  "promo",
-  "winner",
-  "congratulations",
-  "act now",
-  "limited offer",
-  "earn money"
+  "free money", "buy now", "click here", "subscribe", "promo",
+  "winner", "congratulations", "act now", "limited offer", "earn money"
 ];
 
 function containsSpam(text) {
@@ -53,6 +59,9 @@ function containsSpam(text) {
 }
 
 
+/* ════════════════════════════════════════
+   5. COMPREHENSIVE VALIDATION
+════════════════════════════════════════ */
 const fields = {
   name:    { el: document.getElementById("name"),    err: document.getElementById("nameErr") },
   email:   { el: document.getElementById("email"),   err: document.getElementById("emailErr") },
@@ -63,14 +72,19 @@ const fields = {
 function validateName(val)    { return val.trim().length >= 2; }
 function validateEmail(val)   { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()); }
 function validateSubject(val) { return val.trim().length >= 3; }
+function validateMessage(val) { return val.trim().length >= 10; }
 
 const validators = {
   name:    validateName,
   email:   validateEmail,
   subject: validateSubject,
+  message: validateMessage,
 };
 
 
+/* ════════════════════════════════════════
+   6. USER FEEDBACK: REAL-TIME VALIDATION
+════════════════════════════════════════ */
 Object.entries(fields).forEach(([key, { el, err }]) => {
   el.addEventListener("input", () => {
     const valid = validators[key](el.value);
@@ -100,6 +114,10 @@ function showFieldError(key, focus = true) {
   if (focus) fields[key].el.focus();
 }
 
+
+/* ════════════════════════════════════════
+   STATUS MESSAGE HELPER
+════════════════════════════════════════ */
 const statusMsg = document.getElementById("statusMsg");
 
 function showStatus(msg, type) {
@@ -112,17 +130,22 @@ function clearStatus() {
   statusMsg.textContent = "";
 }
 
+
+/* ════════════════════════════════════════
+   FORM SUBMIT HANDLER
+════════════════════════════════════════ */
 const form      = document.getElementById("contactForm");
 const submitBtn = document.getElementById("submitBtn");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault();    
+  e.preventDefault();
   clearStatus();
   clearFieldErrors();
 
   const nameVal    = fields.name.el.value;
   const emailVal   = fields.email.el.value;
   const subjectVal = fields.subject.el.value;
+  const messageVal = fields.message.el.value;
 
   if (!validateName(nameVal)) {
     showFieldError("name");
@@ -142,28 +165,24 @@ form.addEventListener("submit", function (e) {
     return;
   }
 
+  if (!validateMessage(messageVal)) {
+    showFieldError("message");
+    showStatus("Your message is too short. Please write at least 10 characters.", "error");
+    return;
+  }
+
   if (isTooFast()) {
-    showStatus(
-      "Submission was too fast. Please take a moment to review your message and try again.",
-      "warn"
-    );
+    showStatus("Submission was too fast. Please take a moment to review your message and try again.", "warn");
     return;
   }
 
   if (isRateLimited()) {
-    showStatus(
-      "Too many submissions. Please wait a minute before trying again.",
-      "warn"
-    );
+    showStatus("Too many submissions. Please wait a minute before trying again.", "warn");
     return;
   }
 
-
   if (containsSpam(messageVal) || containsSpam(subjectVal)) {
-    showStatus(
-      "Your message contains blocked spam keywords. Please revise and try again.",
-      "warn"
-    );
+    showStatus("Your message contains blocked spam keywords. Please revise and try again.", "warn");
     return;
   }
 
@@ -192,3 +211,5 @@ form.addEventListener("submit", function (e) {
     submitBtn.textContent = "Send Message";
   });
 });
+
+} // end guard
