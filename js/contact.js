@@ -1,14 +1,5 @@
-/* ════════════════════════════════════════
-   contact.js – Contact Form Logic
-   Portfolio of Erin Quiazon
-════════════════════════════════════════ */
-
-// Guard: only run if the contact form exists on this page
 if (document.getElementById("toggleBtn")) {
 
-/* ════════════════════════════════════════
-   1. TOGGLE ANIMATION
-════════════════════════════════════════ */
 const toggleBtn = document.getElementById("toggleBtn");
 const formPanel = document.getElementById("formPanel");
 
@@ -20,10 +11,6 @@ toggleBtn.addEventListener("click", () => {
 });
 
 
-/* ════════════════════════════════════════
-   2. SPAM FILTER: RATE LIMITING
-   Max 3 submissions per 60 seconds.
-════════════════════════════════════════ */
 let submitTimes = [];
 
 function isRateLimited() {
@@ -35,9 +22,6 @@ function isRateLimited() {
 }
 
 
-/* ════════════════════════════════════════
-   3. SPAM FILTER: TIME-BASED FILTERING
-════════════════════════════════════════ */
 const formLoadTime = Date.now();
 
 function isTooFast() {
@@ -45,9 +29,6 @@ function isTooFast() {
 }
 
 
-/* ════════════════════════════════════════
-   4. SPAM FILTER: SPAM KEYWORD DETECTION
-════════════════════════════════════════ */
 const spamWords = [
   "free money", "buy now", "click here", "subscribe", "promo",
   "winner", "congratulations", "act now", "limited offer", "earn money"
@@ -58,10 +39,6 @@ function containsSpam(text) {
   return spamWords.some(word => lower.includes(word));
 }
 
-
-/* ════════════════════════════════════════
-   5. COMPREHENSIVE VALIDATION
-════════════════════════════════════════ */
 const fields = {
   name:    { el: document.getElementById("name"),    err: document.getElementById("nameErr") },
   email:   { el: document.getElementById("email"),   err: document.getElementById("emailErr") },
@@ -82,9 +59,6 @@ const validators = {
 };
 
 
-/* ════════════════════════════════════════
-   6. USER FEEDBACK: REAL-TIME VALIDATION
-════════════════════════════════════════ */
 Object.entries(fields).forEach(([key, { el, err }]) => {
   el.addEventListener("input", () => {
     const valid = validators[key](el.value);
@@ -114,10 +88,6 @@ function showFieldError(key, focus = true) {
   if (focus) fields[key].el.focus();
 }
 
-
-/* ════════════════════════════════════════
-   STATUS MESSAGE HELPER
-════════════════════════════════════════ */
 const statusMsg = document.getElementById("statusMsg");
 
 function showStatus(msg, type) {
@@ -131,9 +101,6 @@ function clearStatus() {
 }
 
 
-/* ════════════════════════════════════════
-   FORM SUBMIT HANDLER
-════════════════════════════════════════ */
 const form      = document.getElementById("contactForm");
 const submitBtn = document.getElementById("submitBtn");
 
@@ -212,4 +179,4 @@ form.addEventListener("submit", function (e) {
   });
 });
 
-} // end guard
+} 
